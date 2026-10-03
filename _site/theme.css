@@ -1,0 +1,102 @@
+/* The Argonauts' public site, in BSAC's colours and type (see README.md).
+ *
+ * The BSAC logo is used as BSAC supplies it, unchanged: never stretched,
+ * tilted, recoloured or rearranged, never on red, with clear space around
+ * it -- the artwork's own margins, a diver's head wide -- and never under
+ * 70px across on screen. On BSAC blue it is the reversed version, which
+ * keeps its red fins. */
+
+/* Ubuntu, BSAC's typeface, made by ./vendor.sh fonts: the whole font, as
+ * WOFF2. Without it, the system's own sans-serif, and nothing else changes. */
+@font-face { font-family: "Ubuntu"; font-weight: 400; font-style: normal; font-display: swap;
+             src: url("fonts/Ubuntu-Regular.woff2") format("woff2"); }
+@font-face { font-family: "Ubuntu"; font-weight: 400; font-style: italic; font-display: swap;
+             src: url("fonts/Ubuntu-Italic.woff2") format("woff2"); }
+@font-face { font-family: "Ubuntu"; font-weight: 500; font-style: normal; font-display: swap;
+             src: url("fonts/Ubuntu-Medium.woff2") format("woff2"); }
+@font-face { font-family: "Ubuntu"; font-weight: 700; font-style: normal; font-display: swap;
+             src: url("fonts/Ubuntu-Bold.woff2") format("woff2"); }
+@font-face { font-family: "Ubuntu"; font-weight: 700; font-style: italic; font-display: swap;
+             src: url("fonts/Ubuntu-BoldItalic.woff2") format("woff2"); }
+
+:root {
+  --blue: #23398b;          /* BSAC blue, as in the logo */
+  --sky: #36bcee;           /* the logo's light blue */
+  --red: #e30613;           /* its fins: for nothing else here */
+  --ink: #1d2433;
+  --soft: #5b6475;
+  --line: #dde2ec;
+  --wash: #f3f6fb;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; font: 400 1.0625rem/1.6 "Ubuntu", system-ui, sans-serif; color: var(--ink); background: #fff; }
+a { color: var(--blue); }
+a:hover { color: #1a2a66; }
+img, video { max-width: 100%; height: auto; }
+
+.inner { max-width: 60rem; margin: 0 auto; padding: 0 1.25rem; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* The masthead: the club's name, and BSAC's logo on white. */
+.masthead { background: #fff; border-bottom: 4px solid var(--sky); }
+.masthead > .inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+                     min-height: 6.5rem; }
+.club { text-decoration: none; color: var(--blue); line-height: 1.05; }
+.club .name { display: block; font-weight: 700; font-size: 2.4rem; letter-spacing: -0.01em; }
+.club .what { display: block; margin-top: 2px; font-weight: 500; font-size: 1.1rem; color: var(--soft); }
+.bsac { flex: none; line-height: 0; }
+.masthead .bsac img { width: 141px; height: 96px; }
+
+.bar { background: var(--blue); }
+.bar .inner { display: flex; flex-wrap: wrap; gap: 0 1.5rem; }
+.bar a { color: #fff; text-decoration: none; font-weight: 500; padding: 0.7rem 0; border-bottom: 3px solid transparent; }
+.bar a:hover, .bar a[aria-current] { border-bottom-color: var(--sky); }
+@media (max-width: 34rem) { .bar .inner { gap: 0 1.25rem; } }
+
+/* What is said. */
+.wrap { max-width: 42rem; margin: 0 auto; padding: 2rem 1.25rem 3rem; }
+h1, h2, h3 { color: var(--blue); font-weight: 700; line-height: 1.2; }
+h1 { font-size: 2.1rem; margin: 0 0 0.5rem; }
+h2 { font-size: 1.5rem; margin: 2rem 0 0.5rem; }
+h3 { font-size: 1.2rem; margin: 1.5rem 0 0.4rem; }
+.byline { color: var(--soft); margin: 0 0 1.5rem; }
+figure { margin: 1.5rem 0; }
+figure img, figure video { display: block; width: 100%; border-radius: 4px; background: var(--wash); }
+figcaption { color: var(--soft); font-size: 0.9375rem; margin-top: 0.4rem; }
+figure.attachment a { display: inline-flex; align-items: center; gap: 0.5rem; }
+figure.pdf img { border: 1px solid var(--line); }
+pre { overflow-x: auto; background: var(--wash); padding: 0.75rem 1rem; border-radius: 4px; }
+
+.join { margin: 2.5rem 0 0; padding: 1rem 1.25rem; background: var(--wash); border-left: 4px solid var(--sky); }
+.join a { font-weight: 500; }
+
+/* Home: what /home says, then the posts, newest first, by year. */
+.intro { margin-bottom: 2rem; }
+.year { border-bottom: 1px solid var(--line); padding-bottom: 0.3rem; }
+.listed { margin: 1.25rem 0 1.75rem; }
+.listed .title { display: flex; align-items: center; gap: 1rem; text-decoration: none; font-size: 1.3rem;
+                 font-weight: 700; line-height: 1.25; }
+.listed .thumb { flex: none; width: 5.5rem; height: 5.5rem; object-fit: cover; border-radius: 4px; }
+.listed .byline { margin: 0.4rem 0 0.25rem; font-size: 0.9375rem; }
+.listed p { margin: 0.25rem 0; }
+
+/* The foot: BSAC's reversed logo, on BSAC blue. */
+.foot { background: var(--blue); color: #fff; }
+.foot .inner { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding-top: 1.5rem;
+               padding-bottom: 1.5rem; }
+.foot a { color: #fff; }
+.foot p { margin: 0.25rem 0; }
+.foot .bsac img { width: 141px; height: 96px; }                  /* as the masthead's, so they line up */
+.foot .facebook { display: inline-flex; align-items: center; gap: 0.4rem; }
+.foot .facebook img { width: 20px; height: 20px; }
+.foot .copyright { font-size: 0.875rem; opacity: 0.85; }
+
+@media (max-width: 34rem) {
+  .club .name { font-size: 1.9rem; }
+  .masthead > .inner { min-height: 5.5rem; }
+  .masthead .bsac img, .foot .bsac img { width: 118px; height: 80px; }
+  h1 { font-size: 1.75rem; }
+  .foot .inner { flex-direction: column; align-items: flex-start; }
+}
